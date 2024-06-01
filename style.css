@@ -1,0 +1,43 @@
+body{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh;
+}
+.calculator{
+  border: 1px solid;
+  width: 290px;
+  background-color: rgb(166, 180, 184);
+  
+}
+.display-value{
+  margin: 10px 10px;
+  width: 91%;
+  height: 35px;
+  border: none;
+  border-radius: 4px;
+  font-size: 19px;
+  outline: none;
+}
+.btn{
+  margin: 10px 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  
+ 
+
+}
+.button{
+  width:75px;
+  height:29px ;
+  border:1px solid;
+  font-size: 16px;
+  cursor: pointer;
+ 
+}
+.button:hover{
+  background-color: rgb(226, 160, 160);
+}

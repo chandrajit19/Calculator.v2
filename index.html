@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calculator">
+    
+    <input type="text" class="display-value"  placeholder="Here!" readonly>
+     
+    <div class="btn">
+      <button class="button" onclick="display+='0'; fun1();">0</button>
+      <button class="button" onclick="display+='1'; fun1();">1</button>
+      <button class="button" onclick="display='';fun1();">C</button>
+      <Button class="button" onclick="display+='2';fun1();">2</Button>
+      <button class="button" onclick="display+='3';fun1();">3</button>
+      <button class="button" onclick="display+='+';fun1();">+</button>
+      <Button class="button" onclick="display+='4';fun1();">4</Button>
+      <button class="button" onclick="display+='5';fun1();">5</button>
+      <button class="button" onclick="display+='-';fun1();">-</button>
+      <Button class="button" onclick="display+='6';fun1();">6</Button>
+      <button class="button" onclick="display+='1';fun1();">7</button>
+      <button class="button" onclick="display+='*';fun1();">*</button>
+      <button class="button" onclick="display+='8';fun1();">8</button>
+      <button class="button" onclick="display+='9';fun1();">9</button>
+      <button class="button" onclick="display+='/';fun1();">/</button>
+      <button class="button" onclick="display+='.';fun1();">.</button>
+      <button class="button" onclick="display=display.slice(0, -1); fun1();">←</button>
+      <button class="button" onclick="let result=eval(display); display=result; fun1();">=</button>
+
+     <script>
+        let display='';
+        function fun1(){
+          
+        const inputValue=document.querySelector('.display-value');
+        inputValue.value=display;
+       
+        }
+  </script>
+     </div>
+  </div>
+</body>
+</html>
