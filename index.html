@@ -3,44 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple calculator application">
   <title>Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="calculator">
-    
-    <input type="text" class="display-value"  placeholder="Here!" readonly>
-     
+    <input type="text" class="display-value" placeholder="Here!" readonly >
     <div class="btn">
-      <button class="button" onclick="display+='0'; fun1();">0</button>
-      <button class="button" onclick="display+='1'; fun1();">1</button>
-      <button class="button" onclick="display='';fun1();">C</button>
-      <Button class="button" onclick="display+='2';fun1();">2</Button>
-      <button class="button" onclick="display+='3';fun1();">3</button>
-      <button class="button" onclick="display+='+';fun1();">+</button>
-      <Button class="button" onclick="display+='4';fun1();">4</Button>
-      <button class="button" onclick="display+='5';fun1();">5</button>
-      <button class="button" onclick="display+='-';fun1();">-</button>
-      <Button class="button" onclick="display+='6';fun1();">6</Button>
-      <button class="button" onclick="display+='1';fun1();">7</button>
-      <button class="button" onclick="display+='*';fun1();">*</button>
-      <button class="button" onclick="display+='8';fun1();">8</button>
-      <button class="button" onclick="display+='9';fun1();">9</button>
-      <button class="button" onclick="display+='/';fun1();">/</button>
-      <button class="button" onclick="display+='.';fun1();">.</button>
-      <button class="button" onclick="display=display.slice(0, -1); fun1();">←</button>
-      <button class="button" onclick="let result=eval(display); display=result; fun1();">=</button>
-
-     <script>
-        let display='';
-        function fun1(){
-          
-        const inputValue=document.querySelector('.display-value');
-        inputValue.value=display;
-       
-        }
-  </script>
-     </div>
+      <button type="button" class="button" onclick="addToDisplay('0')">0</button>
+      <button type="button" class="button" onclick="addToDisplay('1')">1</button>
+      <button type="button" class="button" onclick="clearDisplay()">C</button>
+      <button type="button" class="button" onclick="addToDisplay('2')">2</button>
+      <button type="button" class="button" onclick="addToDisplay('3')">3</button>
+      <button type="button" class="button" onclick="addToDisplay('+')">+</button>
+      <button type="button" class="button" onclick="addToDisplay('4')">4</button>
+      <button type="button" class="button" onclick="addToDisplay('5')">5</button>
+      <button type="button" class="button" onclick="addToDisplay('-')">-</button>
+      <button type="button" class="button" onclick="addToDisplay('6')">6</button>
+      <button type="button" class="button" onclick="addToDisplay('7')">7</button>
+      <button type="button" class="button" onclick="addToDisplay('*')">*</button>
+      <button type="button" class="button" onclick="addToDisplay('8')">8</button>
+      <button type="button" class="button" onclick="addToDisplay('9')">9</button>
+      <button type="button" class="button" onclick="addToDisplay('/')">/</button>
+      <button type="button" class="button" onclick="addToDisplay('.')">.</button>
+      <button type="button" class="button" onclick="backspace()">←</button>
+      <button type="button" class="button" onclick="calculate()">=</button>
+    </div>
+    <img src="./ashoka.webp" width="512"  height="512" alt="">
   </div>
+
+  <script>
+    let display = '';
+    const inputEl = document.querySelector('.display-value');
+
+    function updateDisplay() {
+      inputEl.value = display;
+    }
+
+    function clearDisplay() {
+      display = '';
+      updateDisplay();
+    }
+
+    function backspace() {
+      display = display.slice(0, -1);
+      updateDisplay();
+    }
+
+    function addToDisplay(value) {
+      display += value;
+      updateDisplay();
+    }
+
+    function calculate() {
+      try {
+        if (display === '') return;
+        const result = eval(display);
+        display = String(result);
+        updateDisplay();
+      } catch (err) {
+        display = 'Error';
+        updateDisplay();
+      }
+    }
+
+    updateDisplay();
+  </script>
 </body>
 </html>

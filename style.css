@@ -1,15 +1,72 @@
+:root{
+  --s: 3px;
+}
 body{
- display: flex;
- justify-content: center;
- align-items: center;
- height: 100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow: hidden;
+
+  /* layers: grid1, grid2, base */
+  background:
+    repeating-linear-gradient(45deg,
+      rgba(10,157,54,0.51) 0 calc(var(--s)),
+      rgba(200,140,150,0.33) calc(var(--s)) calc(calc(var(--s) * 2))
+    ),
+    repeating-linear-gradient(135deg,
+      rgba(119,90,200,0.42) 0 calc(var(--s)),
+      rgba(220,185,110,0.52) calc(var(--s)) calc(calc(var(--s) * 2))
+    ),
+    linear-gradient(135deg, #fa7b274a 0% 33%, #ffffffc0 33% 66%, #2ff83950 66% 100%);
+
+  /* make the grids visible and animateable */
+  background-size:
+    calc(var(--s) * 8) calc(var(--s) * 8),   /* size for first repeating grid */
+    calc(var(--s) * 8) calc(var(--s) * 8),   /* size for second repeating grid */
+    auto;
+
+  background-blend-mode: overlay;
+  /* animate positions of the two grid layers (third layer stays fixed) */
+  animation: backgroundAnimation 6s linear infinite;
+}
+
+/* animate each layer's background-position (order must match layers) */
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 200px 200px, -200px -200px, 0 0;
+  }
 }
 .calculator{
   border: 1px solid;
   width: 290px;
   background-color: rgb(166, 180, 184);
-  
+  position: relative;
+    border-radius: 16px;
 }
+.calculator img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  background-color: transparent;
+  animation: rotate 20s linear infinite;
+  opacity: 0.1;
+
+}
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .display-value{
   margin: 10px 10px;
   width: 91%;
@@ -18,6 +75,7 @@ body{
   border-radius: 4px;
   font-size: 19px;
   outline: none;
+  text-align: end;
 }
 .btn{
   margin: 10px 21px;
@@ -40,4 +98,24 @@ body{
 }
 .button:hover{
   background-color: rgb(226, 160, 160);
+}
+
+@media screen and (max-width: 600px) {
+
+  .calculator {
+    width: 100%;
+    max-width: 420px;      /* keeps it reasonable on narrow tablets */
+    padding: 16px;
+    box-sizing: border-box;
+    margin: 0 12px;        /* small side margin so it doesn't touch edges */
+    height: auto;
+    overflow: hidden;
+    opacity: 0.8;
+  }
+
+  /* If you use an image (logo/profile) inside calculator, make it responsive */
+  .calculator img {
+      width: 300px;
+      height: 300px;
+  }
 }
